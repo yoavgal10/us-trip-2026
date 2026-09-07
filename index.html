@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SJ + NY · Sep 23–28 · Trip HQ</title>
+<style>
+  :root{
+    --ink:#0f1722; --ink2:#42506b; --ink3:#7c89a3;
+    --paper:#f6f7f9; --card:#ffffff; --line:#e4e8ef;
+    --accent:#0b6bcb; --accent-soft:#e7f1fc;
+    --booked:#127a48; --booked-soft:#e3f5ec;
+    --open:#b25f06; --open-soft:#fdf0dd;
+    --flight:#5b3cc4; --flight-soft:#efeafb;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px 90px}
+
+  header.hero{background:linear-gradient(150deg,#0c1b2e 0%,#103a5c 55%,#0b6bcb 100%);color:#fff;padding:34px 0 26px}
+  header.hero .wrap{padding-bottom:0}
+  .kicker{text-transform:uppercase;letter-spacing:.14em;font-size:11px;opacity:.72;font-weight:600}
+  h1{font-size:29px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
+  .route{font-size:15px;opacity:.9;margin-top:4px}
+  .countdown{margin-top:18px;display:inline-flex;gap:10px;background:rgba(255,255,255,.1);
+             border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 14px;font-size:13.5px}
+  .countdown b{font-variant-numeric:tabular-nums}
+
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(246,247,249,.92);backdrop-filter:blur(8px);
+          border-bottom:1px solid var(--line);padding:10px 0;margin:0 -16px;padding-left:16px;padding-right:16px;
+          display:flex;gap:8px;overflow-x:auto}
+  nav.toc a{white-space:nowrap;font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;
+            padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+  nav.toc a:active{background:var(--accent-soft)}
+
+  section{margin-top:34px}
+  h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+  .sub{color:var(--ink3);font-size:13px;margin-bottom:14px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+
+  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+        padding:3px 9px;border-radius:999px;vertical-align:middle}
+  .pill.booked{background:var(--booked-soft);color:var(--booked)}
+  .pill.open{background:var(--open-soft);color:var(--open)}
+  .pill.flight{background:var(--flight-soft);color:var(--flight)}
+
+  .day{margin-bottom:8px}
+  .day-head{display:flex;align-items:baseline;gap:10px;margin:22px 0 10px}
+  .day-chip{background:var(--ink);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:4px 9px;white-space:nowrap}
+  .day-title{font-size:15px;font-weight:700}
+  .day-note{font-size:12.5px;color:var(--ink3);margin-left:auto;text-align:right}
+
+  .item{display:flex;gap:12px;padding:13px 16px}
+  .item .time{font-variant-numeric:tabular-nums;font-weight:700;font-size:13.5px;min-width:56px;color:var(--ink)}
+  .item .time small{display:block;font-weight:600;color:var(--ink3);font-size:11px}
+  .item .body{flex:1;min-width:0}
+  .item .title{font-weight:650;font-size:14.5px}
+  .item .meta{font-size:13px;color:var(--ink2);margin-top:2px}
+  .item .meta b{color:var(--ink)}
+  .seg{border-left:2px solid var(--line);margin-left:5px}
+
+  table.book{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.book td,table.book th{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.book th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3)}
+  table.book tr:last-child td{border-bottom:none}
+  .conf{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--paper);
+        border:1px solid var(--line);border-radius:6px;padding:2px 7px;white-space:nowrap}
+  a{color:var(--accent);text-decoration:none}
+  .tel{font-variant-numeric:tabular-nums}
+
+  .decision{border-left:4px solid var(--open)}
+  .decision.done{border-left-color:var(--booked);opacity:.72}
+  .decision h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .decision .why{font-size:13px;color:var(--ink2);margin-top:6px}
+  .opts{margin-top:10px;display:grid;gap:8px}
+  .opt{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px;background:var(--paper)}
+  .opt b{display:block;font-size:13.5px}
+  .opt span{color:var(--ink2);font-size:12.5px}
+  .opt.lead{border-color:var(--accent);background:var(--accent-soft)}
+  .chk{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--ink2);cursor:pointer;user-select:none}
+  .chk input{width:17px;height:17px;accent-color:var(--booked)}
+
+  .logi h3{font-size:14.5px;font-weight:700;margin-bottom:4px}
+  .logi p{font-size:13.5px;color:var(--ink2)}
+  .logi p+p{margin-top:6px}
+
+  footer{margin-top:44px;text-align:center;color:var(--ink3);font-size:12px}
+  @media (max-width:520px){ h1{font-size:24px} .item .time{min-width:48px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Trip HQ · San Jose &amp; New York</div>
+    <h1>Sep 23 – 28, 2026</h1>
+    <div class="route">TLV → JFK → SFO &nbsp;·&nbsp; WeAreDevelopers, San Jose &nbsp;·&nbsp; family in NY</div>
+    <div class="countdown">Wheels up in <b id="cd">…</b> &nbsp;<span style="opacity:.65">LY9 · TLV 05:55, Wed Sep 23</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <a href="#timeline">Timeline</a>
+  <a href="#bookings">Bookings</a>
+  <a href="#decisions">Open decisions</a>
+  <a href="#logistics">Logistics</a>
+</nav>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline">
+  <h2>Timeline</h2>
+  <div class="sub">All flight times local to the airport. Booked state shown; pending changes live under <a href="#decisions">Open decisions</a>.</div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Wed 23</span><span class="day-title">Travel day · TLV → SFO</span><span class="day-note">via JFK</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">05:55<small>TLV</small></div>
+        <div class="body"><div class="title">LY9 · Tel Aviv → New York JFK <span class="pill flight">flight</span></div>
+        <div class="meta">Lands <b>JFK 10:45</b> · premium · ~4h layover in JFK</div></div></div>
+      <div class="item"><div class="time">14:55<small>JFK</small></div>
+        <div class="body"><div class="title">LY4445 · JFK → San Francisco SFO <span class="pill flight">flight</span></div>
+        <div class="meta">Delta-operated · lands <b>SFO 18:17</b> · premium · then ~45 min down to San Jose</div></div></div>
+      <div class="item"><div class="time">eve</div>
+        <div class="body"><div class="title">Check in · Hotel Clariana, San Jose <span class="pill booked">booked</span></div>
+        <div class="meta">2 nights (Sep 23–25). Evening free — dinner pick still open (see decisions).</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Thu 24</span><span class="day-title">Talk day · WeAreDevelopers</span><span class="day-note">Convention Center</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">14:50</div>
+        <div class="body"><div class="title">“When Agents Became Users” <span class="pill booked">speaking</span></div>
+        <div class="meta"><b>2:50–3:20 PM · Stage 7</b> · San Jose Convention Center ·
+          <a href="https://www.wearedevelopers.com/world-congress-north-america/agenda/sessions/when-agents-became-users-rearchitecting-identity-and-permissions-for-ai-at-scale-1283197">session page</a></div></div></div>
+      <div class="item"><div class="time">19:30</div>
+        <div class="body"><div class="title">Dinner · The Farmers Union <span class="pill booked">booked</span></div>
+        <div class="meta">151 W Santa Clara St, downtown SJ · 7:30–9:30 PM · <span class="tel">(408) 277-0545</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Fri 25</span><span class="day-title">Santana Row night</span><span class="day-note">hotel swap</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">AM</div>
+        <div class="body"><div class="title">Check out Clariana · conference day 2</div>
+        <div class="meta">Sixt pickup day (if booking the SJC→SFO one-way — see decisions).</div></div></div>
+      <div class="item"><div class="time">15:00</div>
+        <div class="body"><div class="title">Check in · Hyatt Place San Jose/Downtown <span class="pill booked">booked</span></div>
+        <div class="meta">282 Almaden Blvd · King + sofa bed · breakfast incl. · booking <span class="conf">D839-D8BE</span> (EL AL Travel, 472 ILS ×3 payments)</div></div></div>
+      <div class="item"><div class="time">19:00</div>
+        <div class="body"><div class="title">Dinner with the Sunnyvale crew ×2 holds <span class="pill open">pick one</span></div>
+        <div class="meta"><b>Fitoor</b> (OpenTable <span class="conf">48250</span>) <b>and</b> <b>Suspiro</b> (Resy) both hold 7:00 PM for 3 — cancel one (free, 24h notice).</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Sat 26</span><span class="day-title">Flex day</span><span class="day-note">depends on flight call</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">12:00</div>
+        <div class="body"><div class="title">Check out Hyatt Place</div>
+        <div class="meta">What Saturday looks like hangs on the NY-flight decision below: as booked today you stay in the Bay; move the leg up and you're NY-bound.</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Sun 27</span><span class="day-title">Bay → JFK <span style="font-weight:400">(as booked)</span></span><span class="day-note">red-eye</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">23:50<small>SFO</small></div>
+        <div class="body"><div class="title">LY4569 · SFO → JFK <span class="pill flight">flight</span></div>
+        <div class="meta">Delta-operated · premium · lands <b>JFK 08:14 Mon</b>. Sixt SFO return runs 24/7 — see logistics.</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Mon 28</span><span class="day-title">Home · JFK → TLV</span><span class="day-note"></span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">13:30<small>JFK</small></div>
+        <div class="body"><div class="title">LY10 · New York JFK → Tel Aviv <span class="pill flight">flight</span></div>
+        <div class="meta">Premium · lands <b>TLV 06:50 Tue Sep 29</b></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKINGS ================= -->
+<section id="bookings">
+  <h2>Bookings</h2>
+  <div class="sub">Everything with a confirmation, in one place.</div>
+  <div class="card" style="padding:6px 0 2px">
+    <table class="book">
+      <tr><th>What</th><th>When</th><th>Conf / contact</th></tr>
+      <tr><td><b>LY9</b> TLV→JFK<br><span style="color:var(--ink3);font-size:12.5px">premium</span></td><td>Wed Sep 23<br>05:55 → 10:45</td><td>—</td></tr>
+      <tr><td><b>LY4445</b> JFK→SFO<br><span style="color:var(--ink3);font-size:12.5px">Delta-operated · premium</span></td><td>Wed Sep 23<br>14:55 → 18:17</td><td>—</td></tr>
+      <tr><td><b>LY4569</b> SFO→JFK<br><span style="color:var(--ink3);font-size:12.5px">Delta-operated · premium</span></td><td>Sun Sep 27<br>23:50 → 08:14+1</td><td>—</td></tr>
+      <tr><td><b>LY10</b> JFK→TLV<br><span style="color:var(--ink3);font-size:12.5px">premium</span></td><td>Mon Sep 28<br>13:30 → 06:50+1</td><td>—</td></tr>
+      <tr><td><b>Hotel Clariana</b>, San Jose</td><td>Sep 23–25 · 2n</td><td>—</td></tr>
+      <tr><td><b>Hyatt Place SJ/Downtown</b><br><span style="color:var(--ink3);font-size:12.5px">282 Almaden Blvd · breakfast</span></td><td>Sep 25–26 · 1n</td><td><span class="conf">D839-D8BE</span><br><span style="font-size:12.5px;color:var(--ink3)">472 ILS ×3 · free cancel to Sep 21</span></td></tr>
+      <tr><td><b>Fitoor</b>, Santana Row<br><span style="color:var(--ink3);font-size:12.5px">377 Santana Row</span></td><td>Fri Sep 25 · 7:00 PM · 3 ppl</td><td><span class="conf">48250</span> OpenTable<br><span class="tel">(408) 705-2233</span></td></tr>
+      <tr><td><b>Suspiro</b>, Santana Row<br><span style="color:var(--ink3);font-size:12.5px">3060 Olsen Dr</span></td><td>Fri Sep 25 · 7:00 PM · 3 ppl</td><td>Resy app<br><span class="tel">(408) 703-3886</span></td></tr>
+      <tr><td><b>The Farmers Union</b><br><span style="color:var(--ink3);font-size:12.5px">151 W Santa Clara St</span></td><td>Thu Sep 24 · 7:30 PM</td><td><span class="tel">(408) 277-0545</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= DECISIONS ================= -->
+<section id="decisions">
+  <h2>Open decisions</h2>
+  <div class="sub">Tap the checkbox when one is settled — it sticks on this device.</div>
+
+  <div class="card decision" data-key="nyflight">
+    <h3>When to fly SFO → NY <span class="pill open">decide</span></h3>
+    <div class="why">As booked, the SFO→JFK leg leaves <b>Sun 27, 23:50</b> and JFK→TLV goes <b>Mon 28, 13:30</b> — a 5-hour layover, so no real NY time. Moving the leg earlier buys family time. Date change goes through the travel agent (times only, no fare shopping).</div>
+    <div class="opts">
+      <div class="opt lead"><b>Option A — Sat 26 early: DL405, 7:00 → JFK 15:37</b><span>Keeps Friday night in SJ, lands for Saturday dinner in NY. Needs car at SFO by ~5:15 AM (24/7 key drop, AirTrain Blue Line → Terminal 1).</span></div>
+      <div class="opt"><b>Option B — Fri 25 late: DL 23:50 → JFK 08:14</b><span>Red-eye after Santana Row. Tight: dinner ends ~9:30–10 PM, SFO is ~45 min away. Hyatt night becomes refundable (cancel by Sep 21).</span></div>
+      <div class="opt"><b>Option C — Fri 25 late: UA 23:55 → EWR 08:41</b><span>Same crunch, but lands at Newark — your preferred NY airport. New ticket, not a Delta date change.</span></div>
+      <div class="opt"><b>Option D — Keep as booked (Sun 27, 23:50)</b><span>Max Bay time, zero NY time. Then Saturday night lodging in SJ is needed too.</span></div>
+    </div>
+    <label class="chk"><input type="checkbox"> Decided with the travel agent</label>
+  </div>
+
+  <div class="card decision" data-key="nychotel">
+    <h3>NYC hotel · Sep 26–27 <span class="pill open">open</span></h3>
+    <div class="why">Needed if the SFO→JFK leg moves up (options A–C). Options being researched — near family is the filter.</div>
+    <label class="chk"><input type="checkbox"> Booked</label>
+  </div>
+
+  <div class="card decision" data-key="santana">
+    <h3>Fitoor vs Suspiro · Fri 25 <span class="pill open">cancel one</span></h3>
+    <div class="why">Both hold 7:00 PM for 3 at Santana Row. Both cancel free (Fitoor: 24h notice; Suspiro: 24h, no card held). Fitoor has Friday DJ + belly dancers; Suspiro is Spain-meets-Peru.</div>
+    <label class="chk"><input type="checkbox"> One cancelled</label>
+  </div>
+
+  <div class="card decision" data-key="sixt">
+    <h3>Sixt one-way rental <span class="pill open">to book</span></h3>
+    <div class="why">Plan: SJC pickup → SFO return, burning the <b>$100 Sixt voucher</b>. Open check: does the voucher work on one-ways? SFO return is 24/7 — counter dark 01:00–06:00, key-drop by the booth, garage level 2, no fee. AirTrain Blue Line inside the Rental Car Center; Delta = Terminal 1, ~15–25 min door-to-counter.</div>
+    <label class="chk"><input type="checkbox"> Booked / voucher confirmed</label>
+  </div>
+
+  <div class="card decision" data-key="dinner23">
+    <h3>Arrival-night dinner · Wed 23 <span class="pill open">pick</span></h3>
+    <div class="why">Shortlist near the Convention Center (vegetarian for you, meat for one):
+      <b>Eos &amp; Nyx</b> (8-min walk, front-runner), <b>Hinodeya</b> (vegan ramen, 11 min), <b>Home Eat</b> (Sichuan, 14 min, flag strict-veg for pork stock).</div>
+    <label class="chk"><input type="checkbox"> Picked / booked</label>
+  </div>
+
+  <div class="card decision" data-key="buds">
+    <h3>Pixel Buds swap via Marc <span class="pill open">don't forget</span></h3>
+    <div class="why">Marc hands over the replacement set in SJ (~Sep 24–25). <b>Pack the old bundle</b> and leave it in the US — Google's 21-day return clock runs from ship date (due ~Oct 1). Case 2-3754000041425.</div>
+    <label class="chk"><input type="checkbox"> Old buds packed + dropped off</label>
+  </div>
+</section>
+
+<!-- ================= LOGISTICS ================= -->
+<section id="logistics">
+  <h2>Logistics cheat-sheet</h2>
+  <div class="sub">The fiddly details, pre-researched.</div>
+
+  <div class="card logi">
+    <h3>Sixt SFO early-morning return</h3>
+    <p>Return lanes staffed 24/7; counter unstaffed 01:00–06:00 → key-drop box next to the booth, level 2 of the rental garage, no fee. AirTrain Blue Line station is inside the Rental Car Center; Delta flies from Terminal 1. Door-to-counter ~15–25 min, so a 5:15 AM drop catches a 7:00 AM flight. BART can't help that early (first Saturday train reaches SFO ~06:30).</p>
+  </div>
+  <div class="card logi">
+    <h3>JFK → Brooklyn / Manhattan</h3>
+    <p>Cheapest: AirTrain + subway, $11.75. Sweet spot: AirTrain + LIRR, $14–16. Taxi: $70 flat + tolls.</p>
+  </div>
+  <div class="card logi">
+    <h3>Landing SFO Wednesday 18:17</h3>
+    <p>San Jose is ~35–45 min south by car. Clariana check-in is the first stop; dinner shortlist is walking distance from the Convention Center.</p>
+  </div>
+  <div class="card logi">
+    <h3>Money notes</h3>
+    <p>Hyatt Place: 472 ILS across 3 payments, free cancellation until <b>Sep 21 23:59 GMT</b>, then 100%. Flights: date changes go through the travel agent — hand over times, not fares.</p>
+  </div>
+</section>
+
+<footer>Trip HQ · built Sep 8, 2026 · data current as of build</footer>
+</div>
+
+<script>
+  // countdown to LY9 departure: Sep 23 2026 05:55 IDT (UTC+3) = 02:55 UTC
+  var dep = Date.UTC(2026,8,23,2,55,0);
+  function tick(){
+    var d = dep - Date.now();
+    if(d<=0){document.getElementById('cd').textContent='this trip is on';return;}
+    var days=Math.floor(d/864e5), h=Math.floor(d%864e5/36e5), m=Math.floor(d%36e5/6e4);
+    document.getElementById('cd').textContent = days+'d '+h+'h '+m+'m';
+  }
+  tick(); setInterval(tick,30000);
+
+  // decision checkboxes persist locally
+  document.querySelectorAll('.decision').forEach(function(el){
+    var key='trip-'+el.dataset.key, box=el.querySelector('input[type=checkbox]');
+    try{ if(localStorage.getItem(key)==='1'){box.checked=true;el.classList.add('done');} }catch(e){}
+    box.addEventListener('change',function(){
+      el.classList.toggle('done',box.checked);
+      try{ localStorage.setItem(key, box.checked?'1':'0'); }catch(e){}
+    });
+  });
+</script>
+</body>
+</html>
