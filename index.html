@@ -71,16 +71,12 @@
         border:1px solid var(--line);border-radius:6px;padding:2px 7px;white-space:nowrap}
   a{color:var(--accent);text-decoration:none}
   .tel{font-variant-numeric:tabular-nums}
+  .strike{text-decoration:line-through;color:var(--ink3)}
 
   .decision{border-left:4px solid var(--open)}
   .decision.done{border-left-color:var(--booked);opacity:.72}
-  .decision h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .decision h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .decision .why{font-size:13px;color:var(--ink2);margin-top:6px}
-  .opts{margin-top:10px;display:grid;gap:8px}
-  .opt{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px;background:var(--paper)}
-  .opt b{display:block;font-size:13.5px}
-  .opt span{color:var(--ink2);font-size:12.5px}
-  .opt.lead{border-color:var(--accent);background:var(--accent-soft)}
   .chk{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--ink2);cursor:pointer;user-select:none}
   .chk input{width:17px;height:17px;accent-color:var(--booked)}
 
@@ -114,7 +110,7 @@
 <!-- ================= TIMELINE ================= -->
 <section id="timeline">
   <h2>Timeline</h2>
-  <div class="sub">All flight times local to the airport. Booked state shown; pending changes live under <a href="#decisions">Open decisions</a>.</div>
+  <div class="sub">All flight times local to the airport. Updated Sep 8: NY leg moved to Friday night - two full days with family.</div>
 
   <div class="day">
     <div class="day-head"><span class="day-chip">Wed 23</span><span class="day-title">Travel day · TLV → SFO</span><span class="day-note">via JFK</span></div>
@@ -145,35 +141,41 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-chip">Fri 25</span><span class="day-title">Santana Row night</span><span class="day-note">hotel swap</span></div>
+    <div class="day-head"><span class="day-chip">Fri 25</span><span class="day-title">Santana Row → red-eye to NY</span><span class="day-note">big day</span></div>
     <div class="card seg">
       <div class="item"><div class="time">AM</div>
         <div class="body"><div class="title">Check out Clariana · conference day 2</div>
-        <div class="meta">Sixt pickup day (if booking the SJC→SFO one-way — see decisions).</div></div></div>
-      <div class="item"><div class="time">15:00</div>
-        <div class="body"><div class="title">Check in · Hyatt Place San Jose/Downtown <span class="pill booked">booked</span></div>
-        <div class="meta">282 Almaden Blvd · King + sofa bed · breakfast incl. · booking <span class="conf">D839-D8BE</span> (EL AL Travel, 472 ILS ×3 payments)</div></div></div>
+        <div class="meta">Sixt pickup day — the car does the SJC → SFO run tonight (see logistics).</div></div></div>
       <div class="item"><div class="time">19:00</div>
         <div class="body"><div class="title">Dinner with the Sunnyvale crew ×2 holds <span class="pill open">pick one</span></div>
-        <div class="meta"><b>Fitoor</b> (OpenTable <span class="conf">48250</span>) <b>and</b> <b>Suspiro</b> (Resy) both hold 7:00 PM for 3 — cancel one (free, 24h notice).</div></div></div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-head"><span class="day-chip">Sat 26</span><span class="day-title">Flex day</span><span class="day-note">depends on flight call</span></div>
-    <div class="card seg">
-      <div class="item"><div class="time">12:00</div>
-        <div class="body"><div class="title">Check out Hyatt Place</div>
-        <div class="meta">What Saturday looks like hangs on the NY-flight decision below: as booked today you stay in the Bay; move the leg up and you're NY-bound.</div></div></div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-head"><span class="day-chip">Sun 27</span><span class="day-title">Bay → JFK <span style="font-weight:400">(as booked)</span></span><span class="day-note">red-eye</span></div>
-    <div class="card seg">
+        <div class="meta"><b>Fitoor</b> (OpenTable <span class="conf">48250</span>) <b>and</b> <b>Suspiro</b> (Resy) both hold 7:00 PM for 3 — cancel one (free, 24h notice). Hard stop: rolling toward SFO by ~9:45 PM.</div></div></div>
+      <div class="item"><div class="time">21:45</div>
+        <div class="body"><div class="title">Drive Santana Row → SFO · return the Sixt</div>
+        <div class="meta">~45 min. Counter staffed until 01:00, so a ~22:30 return is normal service — no key-drop needed.</div></div></div>
       <div class="item"><div class="time">23:50<small>SFO</small></div>
-        <div class="body"><div class="title">LY4569 · SFO → JFK <span class="pill flight">flight</span></div>
-        <div class="meta">Delta-operated · premium · lands <b>JFK 08:14 Mon</b>. Sixt SFO return runs 24/7 — see logistics.</div></div></div>
+        <div class="body"><div class="title">Delta nonstop · SFO → JFK <span class="pill flight">flight</span></div>
+        <div class="meta">Moved up from Sunday — lands <b>JFK 08:14 Sat</b>. AirTrain Blue Line from the Rental Car Center → Terminal 1.</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Sat 26</span><span class="day-title">New York · family day 1</span><span class="day-note">lands 08:14</span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">08:14<small>JFK</small></div>
+        <div class="body"><div class="title">Land JFK → into the city</div>
+        <div class="meta">AirTrain + LIRR $14–16 is the sweet spot; subway $11.75 cheapest; taxi $70 + tolls.</div></div></div>
+      <div class="item"><div class="time">PM</div>
+        <div class="body"><div class="title">NYC hotel night 1 <span class="pill open">to book</span></div>
+        <div class="meta">Needed for Sep 26 + 27 — options being researched.</div></div></div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-chip">Sun 27</span><span class="day-title">New York · family day 2</span><span class="day-note"></span></div>
+    <div class="card seg">
+      <div class="item"><div class="time">all day</div>
+        <div class="body"><div class="title">Family time · NYC hotel night 2 <span class="pill open">to book</span></div>
+        <div class="meta">Full day in NY before the Monday afternoon departure.</div></div></div>
     </div>
   </div>
 
@@ -196,10 +198,10 @@
       <tr><th>What</th><th>When</th><th>Conf / contact</th></tr>
       <tr><td><b>LY9</b> TLV→JFK<br><span style="color:var(--ink3);font-size:12.5px">premium</span></td><td>Wed Sep 23<br>05:55 → 10:45</td><td>—</td></tr>
       <tr><td><b>LY4445</b> JFK→SFO<br><span style="color:var(--ink3);font-size:12.5px">Delta-operated · premium</span></td><td>Wed Sep 23<br>14:55 → 18:17</td><td>—</td></tr>
-      <tr><td><b>LY4569</b> SFO→JFK<br><span style="color:var(--ink3);font-size:12.5px">Delta-operated · premium</span></td><td>Sun Sep 27<br>23:50 → 08:14+1</td><td>—</td></tr>
+      <tr><td><b>Delta nonstop</b> SFO→JFK<br><span style="color:var(--ink3);font-size:12.5px">moved up from Sun 27</span></td><td>Fri Sep 25<br>23:50 → 08:14+1</td><td>—</td></tr>
       <tr><td><b>LY10</b> JFK→TLV<br><span style="color:var(--ink3);font-size:12.5px">premium</span></td><td>Mon Sep 28<br>13:30 → 06:50+1</td><td>—</td></tr>
       <tr><td><b>Hotel Clariana</b>, San Jose</td><td>Sep 23–25 · 2n</td><td>—</td></tr>
-      <tr><td><b>Hyatt Place SJ/Downtown</b><br><span style="color:var(--ink3);font-size:12.5px">282 Almaden Blvd · breakfast</span></td><td>Sep 25–26 · 1n</td><td><span class="conf">D839-D8BE</span><br><span style="font-size:12.5px;color:var(--ink3)">472 ILS ×3 · free cancel to Sep 21</span></td></tr>
+      <tr><td><span class="strike"><b>Hyatt Place SJ/Downtown</b></span><br><span style="color:var(--ink3);font-size:12.5px">282 Almaden Blvd · likely cancelling</span></td><td><span class="strike">Sep 25–26 · 1n</span></td><td><span class="conf">D839-D8BE</span><br><span style="font-size:12.5px;color:var(--ink3)">472 ILS ×3 · free cancel to Sep 21</span></td></tr>
       <tr><td><b>Fitoor</b>, Santana Row<br><span style="color:var(--ink3);font-size:12.5px">377 Santana Row</span></td><td>Fri Sep 25 · 7:00 PM · 3 ppl</td><td><span class="conf">48250</span> OpenTable<br><span class="tel">(408) 705-2233</span></td></tr>
       <tr><td><b>Suspiro</b>, Santana Row<br><span style="color:var(--ink3);font-size:12.5px">3060 Olsen Dr</span></td><td>Fri Sep 25 · 7:00 PM · 3 ppl</td><td>Resy app<br><span class="tel">(408) 703-3886</span></td></tr>
       <tr><td><b>The Farmers Union</b><br><span style="color:var(--ink3);font-size:12.5px">151 W Santa Clara St</span></td><td>Thu Sep 24 · 7:30 PM</td><td><span class="tel">(408) 277-0545</span></td></tr>
@@ -210,35 +212,29 @@
 <!-- ================= DECISIONS ================= -->
 <section id="decisions">
   <h2>Open decisions</h2>
-  <div class="sub">Tap the checkbox when one is settled — it sticks on this device.</div>
-
-  <div class="card decision" data-key="nyflight">
-    <h3>When to fly SFO → NY <span class="pill open">decide</span></h3>
-    <div class="why">As booked, the SFO→JFK leg leaves <b>Sun 27, 23:50</b> and JFK→TLV goes <b>Mon 28, 13:30</b> — a 5-hour layover, so no real NY time. Moving the leg earlier buys family time. Date change goes through the travel agent (times only, no fare shopping).</div>
-    <div class="opts">
-      <div class="opt lead"><b>Option A — Sat 26 early: DL405, 7:00 → JFK 15:37</b><span>Keeps Friday night in SJ, lands for Saturday dinner in NY. Needs car at SFO by ~5:15 AM (24/7 key drop, AirTrain Blue Line → Terminal 1).</span></div>
-      <div class="opt"><b>Option B — Fri 25 late: DL 23:50 → JFK 08:14</b><span>Red-eye after Santana Row. Tight: dinner ends ~9:30–10 PM, SFO is ~45 min away. Hyatt night becomes refundable (cancel by Sep 21).</span></div>
-      <div class="opt"><b>Option C — Fri 25 late: UA 23:55 → EWR 08:41</b><span>Same crunch, but lands at Newark — your preferred NY airport. New ticket, not a Delta date change.</span></div>
-      <div class="opt"><b>Option D — Keep as booked (Sun 27, 23:50)</b><span>Max Bay time, zero NY time. Then Saturday night lodging in SJ is needed too.</span></div>
-    </div>
-    <label class="chk"><input type="checkbox"> Decided with the travel agent</label>
-  </div>
+  <div class="sub">Tap the checkbox when one is settled — it sticks on this device. NY flight: settled Sep 8 (Friday 23:50 it is).</div>
 
   <div class="card decision" data-key="nychotel">
-    <h3>NYC hotel · Sep 26–27 <span class="pill open">open</span></h3>
-    <div class="why">Needed if the SFO→JFK leg moves up (options A–C). Options being researched — near family is the filter.</div>
+    <h3>NYC hotel · nights of Sep 26 + 27 <span class="pill open">to book</span></h3>
+    <div class="why">Now that the Friday red-eye is locked, you land JFK Sat 08:14 and need two nights near family. Options being researched.</div>
     <label class="chk"><input type="checkbox"> Booked</label>
+  </div>
+
+  <div class="card decision" data-key="hyatt">
+    <h3>Cancel Hyatt Place · Sep 25–26 <span class="pill open">decide</span></h3>
+    <div class="why">The flight now leaves SFO that same night, so the room is dead weight. Free cancellation until <b>Sep 21 23:59 GMT</b> (EL AL Travel, <span class="conf">D839-D8BE</span>, 472 ILS ×3) — after that it's 100% charge.</div>
+    <label class="chk"><input type="checkbox"> Cancelled</label>
   </div>
 
   <div class="card decision" data-key="santana">
     <h3>Fitoor vs Suspiro · Fri 25 <span class="pill open">cancel one</span></h3>
-    <div class="why">Both hold 7:00 PM for 3 at Santana Row. Both cancel free (Fitoor: 24h notice; Suspiro: 24h, no card held). Fitoor has Friday DJ + belly dancers; Suspiro is Spain-meets-Peru.</div>
+    <div class="why">Both hold 7:00 PM for 3 at Santana Row, both cancel free with 24h notice. Now with a 23:50 flight: dinner gets a hard stop — rolling by ~9:45 PM. Fitoor has Friday DJ + belly dancers; Suspiro is Spain-meets-Peru.</div>
     <label class="chk"><input type="checkbox"> One cancelled</label>
   </div>
 
   <div class="card decision" data-key="sixt">
     <h3>Sixt one-way rental <span class="pill open">to book</span></h3>
-    <div class="why">Plan: SJC pickup → SFO return, burning the <b>$100 Sixt voucher</b>. Open check: does the voucher work on one-ways? SFO return is 24/7 — counter dark 01:00–06:00, key-drop by the booth, garage level 2, no fee. AirTrain Blue Line inside the Rental Car Center; Delta = Terminal 1, ~15–25 min door-to-counter.</div>
+    <div class="why">Plan: SJC pickup → SFO return Friday night, burning the <b>$100 Sixt voucher</b>. Open check: does the voucher work on one-ways? Return ~22:30 is normal staffed service (counter open to 01:00; after that, key-drop by the booth, garage level 2, no fee). AirTrain Blue Line inside the Rental Car Center; Delta = Terminal 1, ~15–25 min door-to-counter.</div>
     <label class="chk"><input type="checkbox"> Booked / voucher confirmed</label>
   </div>
 
@@ -262,11 +258,11 @@
   <div class="sub">The fiddly details, pre-researched.</div>
 
   <div class="card logi">
-    <h3>Sixt SFO early-morning return</h3>
-    <p>Return lanes staffed 24/7; counter unstaffed 01:00–06:00 → key-drop box next to the booth, level 2 of the rental garage, no fee. AirTrain Blue Line station is inside the Rental Car Center; Delta flies from Terminal 1. Door-to-counter ~15–25 min, so a 5:15 AM drop catches a 7:00 AM flight. BART can't help that early (first Saturday train reaches SFO ~06:30).</p>
+    <h3>Friday night: Santana Row → SFO → JFK</h3>
+    <p>Dinner 7:00 PM, rolling by ~9:45 PM, ~45 min to SFO. Sixt return ~22:30 — counter staffed until 01:00 (key-drop box on garage level 2 as backup, no fee). AirTrain Blue Line station is inside the Rental Car Center; Delta flies from Terminal 1, ~15–25 min door-to-counter. Comfortable margin for the 23:50 departure.</p>
   </div>
   <div class="card logi">
-    <h3>JFK → Brooklyn / Manhattan</h3>
+    <h3>JFK → Brooklyn / Manhattan (Sat 08:14)</h3>
     <p>Cheapest: AirTrain + subway, $11.75. Sweet spot: AirTrain + LIRR, $14–16. Taxi: $70 flat + tolls.</p>
   </div>
   <div class="card logi">
@@ -275,11 +271,11 @@
   </div>
   <div class="card logi">
     <h3>Money notes</h3>
-    <p>Hyatt Place: 472 ILS across 3 payments, free cancellation until <b>Sep 21 23:59 GMT</b>, then 100%. Flights: date changes go through the travel agent — hand over times, not fares.</p>
+    <p>Hyatt Place (if kept): 472 ILS across 3 payments, free cancellation until <b>Sep 21 23:59 GMT</b>, then 100%. Flight changes go through the travel agent — times, not fares.</p>
   </div>
 </section>
 
-<footer>Trip HQ · built Sep 8, 2026 · data current as of build</footer>
+<footer>Trip HQ · updated Sep 8, 2026 · NY leg moved to Fri 25, 23:50</footer>
 </div>
 
 <script>
